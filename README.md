@@ -1,24 +1,96 @@
-# README
+# Study Transit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Team Members
+- Zaryaab Khan (zfk2107)
+- Rahi Mitra (rm381)
+- Noel Negron (nmn2127)
+- Erick Berlanga (eb3515)
 
-Things you may want to cover:
+## Overview
+Study Transit is a basic Rails web application for managing libraries and their study spaces.  
+Each Library (e.g., Butler Library) has multiple Spaces (e.g., Main Room, Room 209).  
+Each Space includes a crowd rating from 1 to 5, representing how full it is.
 
-* Ruby version
+This version includes working models, validations, views, and RSpec tests.
 
-* System dependencies
+## Instructions to Run
 
-* Configuration
+1. Install dependencies:
+   ```bash
+   bundle install
+   ```
 
-* Database creation
+2. Set up the database:
 
-* Database initialization
+   ```bash
+   rails db:migrate
+   ```
 
-* How to run the test suite
+3. Start the Rails server:
 
-* Services (job queues, cache servers, search engines, etc.)
+   ```bash
+   rails server
+   ```
 
-* Deployment instructions
+4. Open the app in a browser:
 
-* ...
+   ```
+   http://localhost:3000/libraries
+   ```
+
+## Instructions to Test
+
+Run the RSpec test suite:
+
+```bash
+bundle exec rspec
+```
+
+Expected result:
+
+* Model validation and association tests pass
+* Some scaffold-generated request/view tests may remain pending (default behavior)
+
+## Progress Status
+
+### What's Done
+
+**RSpec Tests**
+- Model tests are implemented and passing:
+  - Library model: validation tests for name/location presence, has_many association
+  - Space model: validation tests for name presence, occupancy range (1-5), belongs_to association
+- Test suite runs successfully (61 examples, 1 minor failure, 26 pending scaffold tests)
+- Good test coverage for core business logic
+
+**Working SaaS Prototype**
+- Rails application with Library and Space models
+- Database migrations created and working
+- CRUD operations for both models implemented
+- Model validations working correctly
+- Basic MVC structure in place
+
+### What Still Needs Work
+
+**User Stories (Cucumber)**
+- Cucumber setup is completed but no feature files written yet
+- Need to create user stories for basic features
+- Need to implement step definitions
+
+**Testing Coverage**
+- Request/controller tests are scaffold-generated and pending
+- Helper tests need implementation
+- One minor view test failure needs fixing
+
+**Deployment**
+- Heroku deployment not yet completed
+- Need to configure production environment
+
+### Next Steps
+1. Write Cucumber feature files for user stories
+2. Implement step definitions for Cucumber tests
+3. Complete request/controller test implementations
+4. Fix minor view test failure
+5. Deploy to Heroku
+6. Add any additional materials for submission
+
+
