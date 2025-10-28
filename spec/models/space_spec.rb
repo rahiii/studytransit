@@ -3,24 +3,42 @@ require 'rails_helper'
 RSpec.describe Space, type: :model do
   let(:library) { Library.create!(name: 'Butler Library', location: 'Columbia University') }
 
-  it 'is valid with name, occupancy (rating 1–5), and library' do
-    space = library.spaces.build(name: 'Main Room', occupancy: 3)
+  it 'is valid with name, capacity (rating 1–5), and library' do
+    space = library.spaces.build(name: 'Main Room', capacity: 3)
     expect(space).to be_valid
   end
 
   it 'is invalid without a name' do
-    space = library.spaces.build(occupancy: 3)
+    space = library.spaces.build(capacity: 3)
     expect(space).not_to be_valid
+    expect(space.errors[:name]).to include("can't be blank")
   end
 
-  it 'is invalid with occupancy below 1' do
-    space = library.spaces.build(name: 'Room 209', occupancy: 0)
+  it 'is invalid with capacity below 1' do
+    space = library.spaces.build(name: 'Room 209', capacity: 0)
     expect(space).not_to be_valid
+    expect(space.errors[:capacity]).to include("must be between 1 and 5")
   end
 
-  it 'is invalid with occupancy above 5' do
-    space = library.spaces.build(name: 'Room 209', occupancy: 6)
+  it 'is invalid with capacity above 5' do
+    space = library.spaces.build(name: 'Room 209', capacity: 6)
     expect(space).not_to be_valid
+    expect(space.errors[:capacity]).to include("must be between 1 and 5")
+  end
+
+  it 'is valid with nil capacity' do
+    space = library.spaces.build(name: 'Room 209', capacity: nil)
+    expect(space).to be_valid
+  end
+
+  it 'is valid with capacity of 1' do
+    space = library.spaces.build(name: 'Room 209', capacity: 1)
+    expect(space).to be_valid
+  end
+
+  it 'is valid with capacity of 5' do
+    space = library.spaces.build(name: 'Room 209', capacity: 5)
+    expect(space).to be_valid
   end
 
   it 'belongs to library' do

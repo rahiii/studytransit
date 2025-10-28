@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_21_040119) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_28_004256) do
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -20,10 +20,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_21_040119) do
 
   create_table "spaces", force: :cascade do |t|
     t.string "name"
-    t.integer "occupancy"
     t.integer "library_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacity"
     t.index ["library_id"], name: "index_spaces_on_library_id"
   end
 

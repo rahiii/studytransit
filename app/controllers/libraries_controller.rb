@@ -8,6 +8,7 @@ class LibrariesController < ApplicationController
 
   # GET /libraries/1 or /libraries/1.json
   def show
+    @spaces = @library.spaces
   end
 
   # GET /libraries/new

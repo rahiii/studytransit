@@ -35,15 +35,11 @@ class SpacesController < ApplicationController
   end
 
   # PATCH/PUT /spaces/1 or /spaces/1.json
+  # TODO: Implement capacity update functionality
   def update
     respond_to do |format|
-      if @space.update(space_params)
-        format.html { redirect_to @space, notice: "Space was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @space }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @space.errors, status: :unprocessable_entity }
-      end
+      # Placeholder - template only
+      format.html { redirect_to library_path(@space.library), notice: "Template only - implement update functionality", status: :see_other }
     end
   end
 
@@ -65,6 +61,6 @@ class SpacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def space_params
-      params.expect(space: [ :name, :occupancy, :library_id ])
+      params.expect(space: [ :name, :capacity, :library_id ])
     end
 end
