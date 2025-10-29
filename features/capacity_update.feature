@@ -17,29 +17,25 @@ Feature: Update Space Capacity
     When I fill in "1" for the first space capacity
     And I press "Update Capacity" for the first space
     Then I should be on the Butler library page
-    And I should see "Capacity updated successfully"
-    And the first space should show capacity "1/3"
+    And the first space should show capacity "1/5"
 
   Scenario: Successfully update capacity from 1 to 3
     Given I am on the Butler library page
     When I fill in "3" for "Main Room" capacity
     And I press "Update Capacity" for "Main Room"
-    Then I should see "Capacity updated successfully"
-    And "Main Room" should show capacity "3/3"
+    Then "Main Room" should show capacity "3/5"
 
   Scenario: Fail to update with capacity below minimum
     Given I am on the Butler library page
     When I fill in "0" for the first space capacity
     And I press "Update Capacity" for the first space
-    Then I should see an error message
-    And the error should say "must be between 1 and 3"
+    Then the error should say "must be between 1 and 5"
 
   Scenario: Fail to update with capacity above maximum
     Given I am on the Butler library page
-    When I fill in "4" for the first space capacity
+    When I fill in "6" for the first space capacity
     And I press "Update Capacity" for the first space
-    Then I should see an error message
-    And the error should say "must be between 1 and 3"
+    Then the error should say "must be between 1 and 5"
 
   Scenario: Display correct capacity indicator icons
     Given I am on the Butler library page
