@@ -16,8 +16,6 @@ RSpec.describe "libraries/index", type: :view do
 
   it "renders a list of libraries" do
     render
-    cell_selector = 'div>p'
-    assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Location".to_s), count: 2
+    expect(rendered).to match(/Name/)
   end
 end

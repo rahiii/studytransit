@@ -35,11 +35,21 @@ class SpacesController < ApplicationController
   end
 
   # PATCH/PUT /spaces/1 or /spaces/1.json
-  # TODO: Implement capacity update functionality
   def update
     respond_to do |format|
-      # Placeholder - template only
-      format.html { redirect_to library_path(@space.library), notice: "Template only - implement update functionality", status: :see_other }
+      if @space.update(space_params)
+        format.html { redirect_to library_path(@space.library), notice: "Capacity updated successfully.", status: :see_other }
+        format.json { render :show, status: :ok, location: @space }
+      else
+        @library = @space.library
+
+        format.html do
+          flash.now[:alert] = @space.errors.full_messages.to_sentence
+          render "libraries/show", status: :unprocessable_entity
+        end
+
+        format.json { render json: @space.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -56,11 +66,11 @@ class SpacesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_space
-      @space = Space.find(params.expect(:id))
+      @space = Space.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def space_params
-      params.expect(space: [ :name, :capacity, :library_id ])
+      params.require(:space).permit(:name, :capacity, :library_id)
     end
 end

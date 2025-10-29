@@ -61,11 +61,11 @@ class LibrariesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_library
-      @library = Library.find(params.expect(:id))
+      @library = Library.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def library_params
-      params.expect(library: [ :name, :location ])
+      params.require(:library).permit(:name, :location)
     end
 end

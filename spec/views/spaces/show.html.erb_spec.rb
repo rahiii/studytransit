@@ -5,7 +5,7 @@ RSpec.describe "spaces/show", type: :view do
     library = Library.create!(name: "Butler Library", location: "Columbia University")
     assign(:space, Space.create!(
       name: "Main Room",
-      occupancy: 4,
+      capacity: 3,
       library: library
     ))
   end
@@ -13,7 +13,7 @@ RSpec.describe "spaces/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/Name/)
-    expect(rendered).to match(/4/)
+    expect(rendered).to match(/3/)
     expect(rendered).to match(//)
   end
 end
