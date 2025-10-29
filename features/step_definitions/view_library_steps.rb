@@ -1,9 +1,7 @@
-# THIS IS ADDING A Library to a temp database. Its bassed of Background in view_libraries.feature
 Given("a library named {string} at {string}") do |name, location|
     Library.create!(name: name, location: location)
   end
   
-#this one should simply be filling up the library with spaces
   Given("{string} has spaces:") do |library_name, table|
     library = Library.find_by!(name: library_name)
     table.hashes.each do |row|
@@ -14,7 +12,7 @@ Given("a library named {string} at {string}") do |name, location|
   Given("I am on the libraries page") do
     visit libraries_path
   end
-
+  
   Then("there should be {int} libraries in the database") do |expected|
     expect(Library.count).to eq(expected)
   end

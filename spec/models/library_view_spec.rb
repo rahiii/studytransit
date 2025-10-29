@@ -20,8 +20,5 @@ RSpec.describe "View libraries and rooms", type: :system do
     expect(page).to have_current_path(library_path(@butler))
     expect(page).to have_content("Main Reading Room")
     expect(page).to have_content("Talking Room")
-
   end
 end
-
-
