@@ -19,7 +19,6 @@ Given("a library named {string} at {string}") do |name, location|
     expect(Library.count).to eq(expected)
   end
   
-
   When("I click on {string}") do |text|
     click_link text
   end
