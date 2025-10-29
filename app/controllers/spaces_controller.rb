@@ -38,7 +38,7 @@ class SpacesController < ApplicationController
   def update
     respond_to do |format|
       if @space.update(space_params)
-        format.html { redirect_to library_path(@space.library), notice: "Capacity updated successfully.", status: :see_other }
+        format.html { redirect_to library_path(@space.library), status: :see_other }
         format.json { render :show, status: :ok, location: @space }
       else
         @library = @space.library
