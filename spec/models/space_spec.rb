@@ -17,13 +17,13 @@ RSpec.describe Space, type: :model do
   it 'is invalid with capacity below 1' do
     space = library.spaces.build(name: 'Room 209', capacity: 0)
     expect(space).not_to be_valid
-    expect(space.errors[:capacity]).to include("must be between 1 and 5")
+    expect(space.errors[:capacity]).to include("must be between 1 and 3")
   end
 
-  it 'is invalid with capacity above 5' do
-    space = library.spaces.build(name: 'Room 209', capacity: 6)
+  it 'is invalid with capacity above 3' do
+    space = library.spaces.build(name: 'Room 209', capacity: 4)
     expect(space).not_to be_valid
-    expect(space.errors[:capacity]).to include("must be between 1 and 5")
+    expect(space.errors[:capacity]).to include("must be between 1 and 3")
   end
 
   it 'is valid with nil capacity' do
@@ -36,8 +36,8 @@ RSpec.describe Space, type: :model do
     expect(space).to be_valid
   end
 
-  it 'is valid with capacity of 5' do
-    space = library.spaces.build(name: 'Room 209', capacity: 5)
+  it 'is valid with capacity of 3' do
+    space = library.spaces.build(name: 'Room 209', capacity: 3)
     expect(space).to be_valid
   end
 
