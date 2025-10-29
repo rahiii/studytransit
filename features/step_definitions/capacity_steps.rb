@@ -11,9 +11,7 @@ When(/^I fill in "([^"]*)" for "([^"]*)" capacity$/) do |value, space_name|
   # Find the section containing the space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     fill_in "space_capacity", with: value
   end
@@ -29,9 +27,7 @@ When(/^I press "([^"]*)" for "([^"]*)"$/) do |button_text, space_name|
   # Find the section containing the space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     click_button button_text
   end
@@ -52,9 +48,7 @@ Then(/^"([^"]*)" should show capacity "([^"]*)"$/) do |space_name, expected_capa
   # Find the section containing the space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     expect(page).to have_content("Current Capacity: #{expected_capacity}")
   end
@@ -72,9 +66,7 @@ Then(/^"([^"]*)" should display (\d+) capacity icons$/) do |space_name, count|
   # Find all sections and look for the one with the matching space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     icons = page.all(".person-icon")
     expect(icons.count).to eq(count.to_i)
@@ -85,9 +77,7 @@ When(/^I update "([^"]*)" capacity to "([^"]*)"$/) do |space_name, capacity|
   # Find the section containing the space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     fill_in "space_capacity", with: capacity
     click_button "Update Capacity"
@@ -98,9 +88,7 @@ Then(/^"([^"]*)" should show "([^"]*)" for capacity$/) do |space_name, expected_
   # Find the section containing the space name
   sections = page.all("section.space-section")
   matching_section = sections.find { |section| section.has_content?(space_name) }
-
   expect(matching_section).not_to be_nil, "Could not find section with space name: #{space_name}"
-
   within(matching_section) do
     expect(page).to have_content("Current Capacity: #{expected_text}")
   end
