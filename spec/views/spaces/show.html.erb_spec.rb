@@ -8,7 +8,7 @@ RSpec.describe "spaces/show", type: :view do
       occupancy: 4,
       library: library
     ))
-  end  
+  end
 
   it "renders attributes in <p>" do
     render

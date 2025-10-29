@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root "libraries#index"
-  
+
   resources :libraries do
     resources :spaces
   end
-  
+
   resources :spaces
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

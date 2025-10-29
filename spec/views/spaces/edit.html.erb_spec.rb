@@ -7,13 +7,12 @@ RSpec.describe "spaces/edit", type: :view do
     space.reload  # ensure it has an ID
     assign(:space, space)
   end
-  
+
 
   it "renders the edit space form" do
     render
 
     assert_select "form[action=?][method=?]", space_path(assigns(:space)), "post" do
-
       assert_select "input[name=?]", "space[name]"
 
       assert_select "input[name=?]", "space[occupancy]"

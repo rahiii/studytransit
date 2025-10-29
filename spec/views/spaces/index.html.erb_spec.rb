@@ -8,7 +8,7 @@ RSpec.describe "spaces/index", type: :view do
       Space.create!(name: "Room 209", occupancy: 2, library: library)
     ])
   end
-  
+
 
   it "renders a list of spaces" do
     render
