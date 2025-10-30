@@ -90,7 +90,7 @@ Expected result:
 ## Links for Submission
 
 - Heroku deployment: [(Heroku)](https://tranquil-springs-29537-42430299ccf0.herokuapp.com/)
-- GitHub repository: [<Github>](https://github.com/rahiii/studytransit/)
+- GitHub repository: [(Github)](https://github.com/rahiii/studytransit/)
 
 ## Submission Checklist (Iteration 1)
 
