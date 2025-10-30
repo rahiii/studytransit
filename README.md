@@ -23,7 +23,8 @@ This version includes working models, validations, views, and RSpec tests.
 2. Set up the database:
 
    ```bash
-   rails db:migrate
+   bundle exec rails db:migrate
+   bundle exec rails db:seed
    ```
 
 3. Start the Rails server:
@@ -40,16 +41,22 @@ This version includes working models, validations, views, and RSpec tests.
 
 ## Instructions to Test
 
-Run the RSpec test suite:
+Run the RSpec unit/request/view tests:
 
 ```bash
 bundle exec rspec
 ```
 
+Run the Cucumber user stories (acceptance tests):
+
+```bash
+bundle exec cucumber
+```
+
 Expected result:
 
-* Model validation and association tests pass
-* Some scaffold-generated request/view tests may remain pending (default behavior)
+- Model validation and association tests pass
+- Cucumber features for viewing libraries/spaces and updating capacity pass
 
 ## Progress Status
 
@@ -68,12 +75,32 @@ Expected result:
 - Model validations working correctly
 - Basic MVC structure in place
 
+**User Stories (Cucumber)**
+- Feature files and step definitions are present for:
+  - Viewing libraries and their spaces
+  - Viewing space capacity indicators
+  - Updating a space's capacity with validation
+
 ### What Still Needs Work
-1. Write Cucumber feature files for user stories
-2. Implement step definitions for Cucumber tests
-3. Complete request/controller test implementations
-4. Fix minor view test failure
-5. Deploy to Heroku
-6. Add any additional materials for submission
+1. Complete request/controller test implementations as needed
+2. Fix any remaining view spec failures if present
+3. Deploy to Heroku and add the live URL below
+4. Add any additional materials for submission (screenshots, notes)
+
+## Links for Submission
+
+- Heroku deployment: <ADD_HEROKU_APP_URL_HERE>
+- GitHub repository: <ADD_GITHUB_REPOSITORY_URL_HERE>
+
+## Submission Checklist (Iteration 1)
+
+- Names and UNIs listed above
+- Run instructions included; test instructions for RSpec and Cucumber included
+- Cucumber user stories for core features present and runnable
+- RSpec tests present and runnable
+- Prototype runs locally and passes tests
+- Heroku deployment link provided
+- GitHub repository link provided
+- Optional additional materials included
 
 

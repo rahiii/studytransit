@@ -11,5 +11,7 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe LibrariesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is loaded as the LibrariesHelper module" do
+    expect(helper).to be_a(LibrariesHelper)
+  end
 end

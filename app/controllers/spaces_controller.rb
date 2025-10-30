@@ -41,7 +41,11 @@ class SpacesController < ApplicationController
         format.html { redirect_to library_path(@space.library), status: :see_other }
         format.json { render :show, status: :ok, location: @space }
       else
-        @library = @space.library
+        # Determine associated library even if the submitted params temporarily
+        # unset the association (e.g., invalid library_id). Use the in-database
+        # value as a fallback to avoid nil in the view.
+        library_id = @space.library_id.presence || @space.attribute_in_database(:library_id)
+        @library = Library.find_by(id: library_id)
 
         format.html do
           flash.now[:alert] = @space.errors.full_messages.to_sentence

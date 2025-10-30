@@ -13,15 +13,24 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/spaces", type: :request do
+  let!(:library) { Library.create!(name: "Butler", location: "Columbia University") }
   # This should return the minimal set of attributes required to create a valid
   # Space. As you add validations to Space, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Main Room",
+      capacity: 3,
+      library_id: library.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: "",
+      capacity: 10, # invalid based on validation 1..5
+      library_id: nil
+    }
   }
 
   describe "GET /index" do
@@ -86,29 +95,33 @@ RSpec.describe "/spaces", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Updated Room",
+          capacity: 4
+        }
       }
 
       it "updates the requested space" do
         space = Space.create! valid_attributes
         patch space_url(space), params: { space: new_attributes }
         space.reload
-        skip("Add assertions for updated state")
+        expect(space.name).to eq("Updated Room")
+        expect(space.capacity).to eq(4)
       end
 
-      it "redirects to the space" do
+      it "redirects to the library page" do
         space = Space.create! valid_attributes
         patch space_url(space), params: { space: new_attributes }
         space.reload
-        expect(response).to redirect_to(space_url(space))
+        expect(response).to redirect_to(library_url(space.library))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+      it "renders a response with 422 status (i.e. to display the error on library page)" do
         space = Space.create! valid_attributes
         patch space_url(space), params: { space: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

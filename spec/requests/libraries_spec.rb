@@ -17,11 +17,17 @@ RSpec.describe "/libraries", type: :request do
   # Library. As you add validations to Library, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Butler Library",
+      location: "Columbia University"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: "",
+      location: ""
+    }
   }
 
   describe "GET /index" do
@@ -78,7 +84,7 @@ RSpec.describe "/libraries", type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post libraries_url, params: { library: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -86,14 +92,18 @@ RSpec.describe "/libraries", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Updated Library",
+          location: "Updated Location"
+        }
       }
 
       it "updates the requested library" do
         library = Library.create! valid_attributes
         patch library_url(library), params: { library: new_attributes }
         library.reload
-        skip("Add assertions for updated state")
+        expect(library.name).to eq("Updated Library")
+        expect(library.location).to eq("Updated Location")
       end
 
       it "redirects to the library" do
@@ -108,7 +118,7 @@ RSpec.describe "/libraries", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         library = Library.create! valid_attributes
         patch library_url(library), params: { library: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
