@@ -68,3 +68,11 @@ group :development, :test do
   gem "database_cleaner-active_record"
   gem "rails-controller-testing"
 end
+
+group :development, :test do
+  gem "sqlite3"
+end
+
+group :production do
+  gem "pg", "~> 1.5"
+end
