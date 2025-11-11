@@ -14,7 +14,14 @@
       <path d="M19 12H5M12 19l-7-7 7-7"/>
     </svg>
   <% end %>
-  <h1 class="library-title"><%= @library.name.upcase %></h1>
+  <div class="header-title-section">
+    <h1 class="library-title"><%= @library.name.upcase %></h1>
+    <% if @library.location.present? %>
+      <div class="library-location-header">
+        <%= @library.location %>
+      </div>
+    <% end %>
+  </div>
 </header>
 
 <main class="spaces-container">
@@ -25,9 +32,12 @@
         <div class="space-header">
           <div class="space-name"><%= space.name %></div>
           <% avg_rating = space.average_rating_last_hour %>
+          <% using_last_week = space.using_last_week_rating? %>
           <% if avg_rating %>
-            <div class="rating-badge">
-              <span class="rating-label">Avg (1hr):</span>
+            <div class="rating-badge <%= 'last-week-rating' if using_last_week %>">
+              <span class="rating-label">
+                <%= using_last_week ? "Avg (last week):" : "Avg (1hr):" %>
+              </span>
               <span class="rating-value"><%= avg_rating %>/5</span>
             </div>
           <% else %>

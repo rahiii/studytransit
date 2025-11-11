@@ -96,11 +96,7 @@ body::before {
   background: rgba(30, 58, 138, 0.1);
 }
 
-.library-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #1e3a8a;
+.header-title-section {
   flex: 1;
   text-align: center;
   margin: 0;
@@ -108,6 +104,21 @@ body::before {
   left: 0;
   right: 0;
   pointer-events: none;
+}
+
+.library-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #1e3a8a;
+  margin: 0 0 0.25rem 0;
+}
+
+.library-location-header {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-top: 0.25rem;
 }
 
 /* Library List Styles */
@@ -140,6 +151,15 @@ body::before {
   text-align: center;
   color: #1e3a8a;
   letter-spacing: 0.3px;
+  margin-bottom: 0.5rem;
+}
+
+.library-location {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #64748b;
+  font-weight: 400;
+  margin-top: 0.25rem;
 }
 
 /* Spaces Container */
@@ -188,6 +208,11 @@ body::before {
 .rating-badge.no-rating {
   background: #94a3b8;
   font-size: 0.8rem;
+}
+
+.rating-badge.last-week-rating {
+  background: #f59e0b;
+  font-size: 0.85rem;
 }
 
 .rating-label {

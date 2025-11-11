@@ -13,6 +13,11 @@
       <div class="library-name">
         <%= library.name %>
       </div>
+      <% if library.location.present? %>
+        <div class="library-location">
+          <%= library.location %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </main>

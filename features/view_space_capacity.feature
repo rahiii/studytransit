@@ -29,9 +29,9 @@ Feature: View Space Capacity
     And I should see 4 person icons for "4th Floor"
 
   Scenario: View spaces with no capacity set
-    Given there is a library "Avery" at "Columbia University"
+    Given there is a library "Avery Library" at "Columbia University"
     And the library has a space "New Space" with no capacity
-    When I am on the library page for "Avery"
+    When I am on the library page for "Avery Library"
     And I view the spaces
     Then I should see "New Space" with capacity "Not set"
     And I should see 0 person icons for "New Space"
