@@ -26,16 +26,9 @@ milstein = Library.find_or_create_by!(name: "Milstein") do |lib|
 end
 
 # Create spaces for Butler
-butler_room_209 = butler.spaces.find_or_create_by!(name: "Room 209")
-butler_room_209.update(capacity: 3) unless butler_room_209.capacity
-
-butler_cafe = butler.spaces.find_or_create_by!(name: "Butler Cafe")
-butler_cafe.update(capacity: 3) unless butler_cafe.capacity
-
-butler_main_room = butler.spaces.find_or_create_by!(name: "Main Room")
-butler_main_room.update(capacity: 2) unless butler_main_room.capacity
-
-butler_4th_floor = butler.spaces.find_or_create_by!(name: "4th Floor")
-butler_4th_floor.update(capacity: 4) unless butler_4th_floor.capacity
+butler.spaces.find_or_create_by!(name: "Room 209")
+butler.spaces.find_or_create_by!(name: "Butler Cafe")
+butler.spaces.find_or_create_by!(name: "Main Room")
+butler.spaces.find_or_create_by!(name: "4th Floor")
 
 puts "Seeded #{Library.count} libraries and #{Space.count} spaces"

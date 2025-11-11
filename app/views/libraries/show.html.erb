@@ -22,10 +22,29 @@
     <% form_space = defined?(@space) && @space.id == space.id ? @space : space %>
     <section class="space-section">
       <div class="space-card">
-        <div class="space-name"><%= space.name %></div>
+        <div class="space-header">
+          <div class="space-name"><%= space.name %></div>
+          <% avg_rating = space.average_rating_last_hour %>
+          <% if avg_rating %>
+            <div class="rating-badge">
+              <span class="rating-label">Avg (1hr):</span>
+              <span class="rating-value"><%= avg_rating %>/5</span>
+            </div>
+          <% else %>
+            <div class="rating-badge no-rating">
+              <span class="rating-label">No recent ratings</span>
+            </div>
+          <% end %>
+        </div>
         <div class="occupancy-indicators">
-          <% (space.capacity || 0).times do %>
-            <span class="person-icon">👤</span>
+          <% if avg_rating %>
+            <% avg_rating.round.times do %>
+              <span class="person-icon">👤</span>
+            <% end %>
+          <% else %>
+            <% (space.capacity || 0).times do %>
+              <span class="person-icon">👤</span>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,27 +1,259 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/rahimitra/Downloads/studytransit/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/controllers/libraries_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/controllers/spaces_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/Users/rahimitra/Downloads/studytransit/app/helpers/application_helper.rb": {
         "lines": [
-          1,
-          null
+          0,
+          0
         ],
         "branches": {}
       },
       "/Users/rahimitra/Downloads/studytransit/app/helpers/libraries_helper.rb": {
         "lines": [
-          1,
-          null
+          0,
+          0
         ],
         "branches": {}
       },
       "/Users/rahimitra/Downloads/studytransit/app/helpers/spaces_helper.rb": {
         "lines": [
-          1,
-          null
+          0,
+          0
         ],
         "branches": {}
       },
+      "/Users/rahimitra/Downloads/studytransit/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/models/library.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/models/rating.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/models/space.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1762838852
+  },
+  "Cucumber": {
+    "coverage": {
       "/Users/rahimitra/Downloads/studytransit/app/models/library.rb": {
         "lines": [
           1,
@@ -62,12 +294,12 @@
           null,
           null,
           1,
-          2,
+          14,
           null,
           null,
           null,
           1,
-          1,
+          0,
           null,
           null,
           null,
@@ -76,62 +308,62 @@
           null,
           null,
           1,
-          4,
+          0,
           null,
-          4,
-          4,
-          4,
-          2,
+          0,
+          0,
+          0,
+          0,
           null,
-          4,
-          2,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          3,
-          3,
-          4,
-          2,
-          null,
-          2,
-          1,
+          0,
+          0,
           null,
           null,
           null,
           null,
           null,
           1,
-          2,
+          0,
+          0,
+          0,
+          0,
           null,
-          2,
-          4,
-          2,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
           null,
           null,
           null,
           1,
           null,
           1,
-          8,
+          14,
           null,
           null,
           null,
           1,
-          7,
+          0,
           null,
           null
         ],
         "branches": {
           "[:if, 0, 28, 6, 34, 9]": {
-            "[:then, 1, 29, 8, 30, 74]": 2,
-            "[:else, 2, 32, 8, 33, 83]": 2
+            "[:then, 1, 29, 8, 30, 74]": 0,
+            "[:else, 2, 32, 8, 33, 83]": 0
           },
           "[:if, 3, 41, 6, 47, 9]": {
-            "[:then, 4, 42, 8, 43, 69]": 2,
-            "[:else, 5, 45, 8, 46, 83]": 1
+            "[:then, 4, 42, 8, 43, 69]": 0,
+            "[:else, 5, 45, 8, 46, 83]": 0
           }
         }
       },
@@ -144,6 +376,27 @@
         ],
         "branches": {}
       },
+      "/Users/rahimitra/Downloads/studytransit/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/helpers/libraries_helper.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {}
+      },
+      "/Users/rahimitra/Downloads/studytransit/app/helpers/spaces_helper.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {}
+      },
       "/Users/rahimitra/Downloads/studytransit/app/controllers/spaces_controller.rb": {
         "lines": [
           1,
@@ -151,7 +404,7 @@
           null,
           null,
           1,
-          1,
+          0,
           null,
           null,
           null,
@@ -160,7 +413,7 @@
           null,
           null,
           1,
-          1,
+          0,
           null,
           null,
           null,
@@ -169,72 +422,72 @@
           null,
           null,
           1,
-          4,
+          0,
           null,
-          4,
-          4,
-          4,
-          2,
+          0,
+          0,
+          0,
+          0,
           null,
-          4,
-          2,
+          0,
+          0,
           null,
           null,
           null,
           null,
           null,
           1,
+          5,
+          5,
+          6,
           3,
-          3,
-          4,
+          null,
+          null,
+          null,
+          null,
+          2,
+          2,
+          null,
+          2,
+          2,
+          2,
+          null,
+          null,
           2,
           null,
           null,
           null,
           null,
-          1,
-          1,
           null,
           1,
-          1,
-          1,
+          0,
           null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          2,
-          null,
-          2,
-          4,
-          2,
+          0,
+          0,
+          0,
           null,
           null,
           null,
           1,
           null,
           1,
-          7,
+          5,
           null,
           null,
           null,
           1,
-          7,
+          5,
           null,
           null
         ],
         "branches": {
           "[:if, 0, 27, 6, 33, 9]": {
-            "[:then, 1, 28, 8, 29, 72]": 2,
-            "[:else, 2, 31, 8, 32, 81]": 2
+            "[:then, 1, 28, 8, 29, 72]": 0,
+            "[:else, 2, 31, 8, 32, 81]": 0
           },
           "[:if, 3, 40, 6, 56, 9]": {
-            "[:then, 4, 41, 8, 42, 67]": 2,
-            "[:else, 5, 47, 8, 55, 81]": 1
+            "[:then, 4, 41, 8, 42, 67]": 3,
+            "[:else, 5, 47, 8, 55, 81]": 2
           }
         }
       },
@@ -260,6 +513,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1761792622
+    "timestamp": 1761793246
   }
 }

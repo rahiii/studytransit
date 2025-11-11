@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_28_004256) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_11_052732) do
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "space_id", null: false
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_ratings_on_space_id"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -27,5 +35,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_28_004256) do
     t.index ["library_id"], name: "index_spaces_on_library_id"
   end
 
+  add_foreign_key "ratings", "spaces"
   add_foreign_key "spaces", "libraries"
 end
