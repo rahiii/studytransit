@@ -57,10 +57,10 @@ class Space < ApplicationRecord
   def using_last_week_rating?
     one_hour_ago = 1.hour.ago
     recent_ratings_count = ratings.where("created_at >= ?", one_hour_ago).count
-    
+
     # Only use last week's data if no recent ratings exist
     return false unless recent_ratings_count.zero?
-    
+
     # Check if last week's data exists
     !average_rating_from_last_week.nil?
   end

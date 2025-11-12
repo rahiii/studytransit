@@ -47,14 +47,8 @@
           <% end %>
         </div>
         <div class="occupancy-indicators">
-          <% if avg_rating %>
-            <% avg_rating.round.times do %>
-              <span class="person-icon">👤</span>
-            <% end %>
-          <% else %>
-            <% (space.capacity || 0).times do %>
-              <span class="person-icon">👤</span>
-            <% end %>
+          <% (space.capacity || 0).times do %>
+            <span class="person-icon">👤</span>
           <% end %>
         </div>
       </div>

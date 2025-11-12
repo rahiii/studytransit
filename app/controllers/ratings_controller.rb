@@ -15,12 +15,11 @@ class RatingsController < ApplicationController
         created_at: rating.created_at
       }, status: :created
     else
-      render json: { status: "error", errors: rating.errors.full_messages }, status: :unprocessable_entity
+      render json: { status: "error", errors: rating.errors.full_messages }, status: :unprocessable_content
     end
   rescue ActiveRecord::RecordNotFound
-    render json: { status: "error", errors: ["Space not found"] }, status: :not_found
+    render json: { status: "error", errors: [ "Space not found" ] }, status: :not_found
   rescue ActionController::ParameterMissing => e
-    render json: { status: "error", errors: [e.message] }, status: :unprocessable_entity
+    render json: { status: "error", errors: [ e.message ] }, status: :unprocessable_content
   end
 end
-

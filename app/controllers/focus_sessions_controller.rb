@@ -5,4 +5,3 @@ class FocusSessionsController < ApplicationController
                    .order("libraries.name ASC, spaces.name ASC")
   end
 end
-

@@ -121,7 +121,7 @@ RSpec.describe "/spaces", type: :request do
       it "renders a response with 422 status (i.e. to display the error on library page)" do
         space = Space.create! valid_attributes
         patch space_url(space), params: { space: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

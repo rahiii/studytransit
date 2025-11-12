@@ -28,8 +28,8 @@ class SpacesController < ApplicationController
         format.html { redirect_to @space, notice: "Space was successfully created." }
         format.json { render :show, status: :created, location: @space }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @space.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @space.errors, status: :unprocessable_content }
       end
     end
   end
@@ -49,10 +49,10 @@ class SpacesController < ApplicationController
 
         format.html do
           flash.now[:alert] = @space.errors.full_messages.to_sentence
-          render "libraries/show", status: :unprocessable_entity
+          render "libraries/show", status: :unprocessable_content
         end
 
-        format.json { render json: @space.errors, status: :unprocessable_entity }
+        format.json { render json: @space.errors, status: :unprocessable_content }
       end
     end
   end
