@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_11_052732) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_12_232802) do
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -23,6 +23,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_11_052732) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "session_identifier"
+    t.index ["space_id", "session_identifier"], name: "index_ratings_on_space_id_and_session_identifier"
     t.index ["space_id"], name: "index_ratings_on_space_id"
   end
 
