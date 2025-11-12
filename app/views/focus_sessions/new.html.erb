@@ -1,0 +1,145 @@
+<% content_for :title, "Lock In" %>
+
+<% spaces_data = @spaces.map do |space|
+     {
+       id: space.id,
+       name: space.name,
+       library: space.library&.name,
+       library_id: space.library_id
+     }
+   end %>
+<% spaces_data_json = json_escape(spaces_data.to_json) %>
+<% rating_values = (1..5).to_a %>
+
+<div class="lock-screen"
+     data-controller="lock-timer"
+     data-lock-timer-spaces-value="<%= spaces_data_json %>"
+     data-lock-timer-rating-url-value="<%= ratings_path %>">
+  <header class="lock-header">
+    <div class="lock-badge">Focus Mode</div>
+    <div class="lock-subtitle">Stay focused, earn better study vibes</div>
+  </header>
+
+  <main class="lock-main">
+    <section class="timer-card">
+      <div class="timer-ring-wrapper">
+        <svg class="timer-ring" viewBox="0 0 160 160">
+          <circle class="timer-ring__background" cx="80" cy="80" r="70"></circle>
+          <circle class="timer-ring__progress"
+                  cx="80"
+                  cy="80"
+                  r="70"
+                  data-lock-timer-target="progressRing"></circle>
+        </svg>
+        <div class="timer-display" data-lock-timer-target="timeDisplay">60:00</div>
+      </div>
+
+      <div class="timer-controls">
+        <label class="timer-label" for="duration-input">Study length</label>
+        <div class="timer-duration">
+          <input id="duration-input"
+                 type="range"
+                 min="15"
+                 max="180"
+                 step="15"
+                 value="60"
+                 data-lock-timer-target="durationInput"
+                 data-action="input->lock-timer#updateDuration">
+          <div class="duration-value" data-lock-timer-target="durationLabel">60 minutes</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lock-actions">
+      <div class="survey-callout" data-lock-timer-target="surveyFeedback"></div>
+      <button class="primary-outline-button"
+              type="button"
+              data-action="click->lock-timer#openSurvey"
+              data-lock-timer-target="surveyButton">
+        How full is the room?
+      </button>
+      <button class="primary-button"
+              type="button"
+              data-action="click->lock-timer#toggleTimer"
+              data-lock-timer-target="lockButton">
+        LOCK IN!
+      </button>
+      <button class="muted-button hidden"
+              type="button"
+              data-action="click->lock-timer#resetTimer"
+              data-lock-timer-target="resetButton">
+        Cancel session
+      </button>
+    </section>
+  </main>
+
+  <div class="survey-modal hidden" data-lock-timer-target="surveyModal">
+    <div class="survey-backdrop" data-action="click->lock-timer#closeSurvey"></div>
+    <div class="survey-dialog">
+      <div class="survey-header">
+        <h2>Select the room you are in</h2>
+        <button type="button" class="survey-close" data-action="click->lock-timer#closeSurvey">&times;</button>
+      </div>
+
+      <div class="survey-body">
+        <div class="survey-search">
+          <label for="survey-search-input">Search by library or room</label>
+          <div class="survey-search-input">
+            <span class="search-icon">🔍</span>
+            <input id="survey-search-input"
+                   type="text"
+                   placeholder="Search rooms"
+                   autocomplete="off"
+                   data-lock-timer-target="searchInput"
+                   data-action="input->lock-timer#filterRooms">
+            <button type="button"
+                    class="clear-search"
+                    aria-label="Clear search"
+                    data-action="click->lock-timer#clearSearch">&times;</button>
+          </div>
+        </div>
+
+        <ul class="survey-room-list" data-lock-timer-target="roomList"></ul>
+
+        <div class="survey-rating hidden" data-lock-timer-target="ratingPanel">
+          <div class="survey-selected-room" data-lock-timer-target="selectedRoomLabel"></div>
+          <div class="survey-slider">
+            <label for="rating-slider">How full is it? <span data-lock-timer-target="selectedRatingLabel">3 / 5</span></label>
+            <input id="rating-slider"
+                   type="range"
+                   min="1"
+                   max="5"
+                   step="1"
+                   value="3"
+                   data-action="input->lock-timer#updateRatingPreview"
+                   data-lock-timer-target="ratingSlider">
+            <div class="survey-slider-icons" aria-hidden="true">
+              <% rating_values.each do |value| %>
+                <span><%= value %></span>
+              <% end %>
+            </div>
+            <div class="survey-slider-caption">
+              <span>Empty</span>
+              <span>Full</span>
+            </div>
+          </div>
+          <div class="survey-slider-actions">
+            <button type="button"
+                    class="primary-button"
+                    data-action="click->lock-timer#submitRating">
+              Submit
+            </button>
+            <button type="button"
+                    class="muted-button"
+                    data-action="click->lock-timer#skipSurvey">
+              Skip for now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
+

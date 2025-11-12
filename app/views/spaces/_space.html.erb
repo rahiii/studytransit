@@ -6,7 +6,7 @@
 
   <p>
     <strong>Capacity:</strong>
-    <%= space.capacity %>
+    <%= space.capacity ? "#{space.capacity}/5" : "Not set" %>
   </p>
 
   <p>

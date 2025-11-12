@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
 
   resources :spaces
+  resources :ratings, only: :create
+  get "/lock", to: "focus_sessions#new", as: :lock
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
