@@ -108,6 +108,90 @@ RSpec.describe Space, type: :model do
 
       expect(space.average_rating_last_hour).to eq(4.0)
     end
+
+    context 'with comprehensive rating logic' do
+      it 'uses same 1-hour window ending at same time 1 week ago for fallback' do
+        space = library.spaces.create!(name: 'Test Room')
+        one_week_ago = 1.week.ago
+
+        # Create rating exactly at 1 week ago (should be included)
+        space.ratings.create!(value: 5, created_at: one_week_ago)
+        # Create rating 30 minutes before 1 week ago (should be included)
+        space.ratings.create!(value: 4, created_at: one_week_ago - 30.minutes)
+        # Create rating 10 minutes before 1 week ago (should be included)
+        space.ratings.create!(value: 4, created_at: one_week_ago - 10.minutes)
+
+        # Should average to 4.33 (rounded to 4.33 or 4.0 depending on precision)
+        average = space.average_rating_last_hour
+        expect(average).to be_within(0.01).of(4.33)
+        expect(space.using_last_week_rating?).to be true
+      end
+
+      it 'prioritizes recent ratings over last week data' do
+        space = library.spaces.create!(name: 'Test Room')
+        one_week_ago = 1.week.ago
+
+        # Create rating from last week (should be ignored if recent ratings exist)
+        space.ratings.create!(value: 3, created_at: one_week_ago - 30.minutes)
+        # Create recent rating (should be used)
+        space.ratings.create!(value: 5, created_at: 30.minutes.ago)
+
+        # Should use recent rating (5.0), not last week rating (3.0)
+        expect(space.average_rating_last_hour).to eq(5.0)
+        expect(space.using_last_week_rating?).to be false
+      end
+
+      it 'excludes ratings outside the 1-hour window for last week fallback' do
+        space = library.spaces.create!(name: 'Test Room')
+        one_week_ago = 1.week.ago
+
+        # Create rating just outside the window (1 week ago - 1 hour 10 minutes)
+        space.ratings.create!(value: 3, created_at: one_week_ago - 1.hour - 10.minutes)
+        # Create rating just outside the window (1 week ago + 10 minutes)
+        space.ratings.create!(value: 5, created_at: one_week_ago + 10.minutes)
+        # Create rating within the window (1 week ago - 30 minutes)
+        space.ratings.create!(value: 4, created_at: one_week_ago - 30.minutes)
+
+        # Should only use rating within the window (4.0)
+        expect(space.average_rating_last_hour).to eq(4.0)
+        expect(space.using_last_week_rating?).to be true
+      end
+
+      it 'demonstrates the window: uses same 1-hour window ending at 1 week ago' do
+        space = library.spaces.create!(name: 'Test Room')
+        one_week_ago = 1.week.ago
+
+        # Create ratings well within the window (not at boundaries to avoid timing issues)
+        # Window is: (1 week ago - 1 hour) to (1 week ago)
+        # Create rating 30 minutes before 1 week ago
+        space.ratings.create!(value: 5, created_at: one_week_ago - 30.minutes)
+        # Create rating 45 minutes before 1 week ago
+        space.ratings.create!(value: 4, created_at: one_week_ago - 45.minutes)
+        # Create rating 15 minutes before 1 week ago
+        space.ratings.create!(value: 4, created_at: one_week_ago - 15.minutes)
+
+        # All three should be included (average = (5 + 4 + 4) / 3 = 4.33)
+        average = space.average_rating_last_hour
+        expect(average).to be_within(0.01).of(4.33)
+        expect(space.using_last_week_rating?).to be true
+
+        # Ratings just before the window should be excluded
+        space.ratings.create!(value: 2, created_at: one_week_ago - 1.hour - 5.minutes)
+        # Should still be 4.33 (the rating outside window is ignored)
+        expect(space.average_rating_last_hour).to be_within(0.01).of(4.33)
+      end
+
+      it 'returns nil when no ratings exist in past hour or last week window' do
+        space = library.spaces.create!(name: 'Test Room')
+
+        # Create ratings outside both windows
+        space.ratings.create!(value: 3, created_at: 2.hours.ago) # Too old for recent
+        space.ratings.create!(value: 4, created_at: 2.weeks.ago) # Too old for last week
+
+        expect(space.average_rating_last_hour).to be_nil
+        expect(space.using_last_week_rating?).to be false
+      end
+    end
   end
 
   describe '#average_rating_from_last_week' do
