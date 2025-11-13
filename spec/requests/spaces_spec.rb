@@ -123,6 +123,25 @@ RSpec.describe "/spaces", type: :request do
         patch space_url(space), params: { space: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_content)
       end
+
+      it "renders the library show page with errors when capacity update fails" do
+        space = Space.create! valid_attributes
+        library = space.library
+        patch space_url(space), params: { space: { capacity: 6 } }
+
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to render_template("libraries/show")
+        expect(response.body).to include("must be between 1 and 5")
+      end
+
+      it "sets @library when space update fails" do
+        space = Space.create! valid_attributes
+        library = space.library
+        patch space_url(space), params: { space: { capacity: 6 } }
+
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(assigns(:library)).to eq(library)
+      end
     end
   end
 

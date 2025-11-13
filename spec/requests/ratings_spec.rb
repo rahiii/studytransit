@@ -77,7 +77,7 @@ RSpec.describe "/ratings", type: :request do
         expect(response).to have_http_status(:created)
         expect(response.parsed_body["action"]).to eq("created")
         expect(space.ratings.count).to eq(2)
-        expect(space.ratings.pluck(:value)).to match_array([4, 5])
+        expect(space.ratings.pluck(:value)).to match_array([ 4, 5 ])
       end
 
       it "allows different sessions to rate the same space independently" do
@@ -94,7 +94,7 @@ RSpec.describe "/ratings", type: :request do
 
         expect(response).to have_http_status(:created)
         expect(space.ratings.count).to eq(2)
-        expect(space.ratings.pluck(:value)).to match_array([4, 5])
+        expect(space.ratings.pluck(:value)).to match_array([ 4, 5 ])
       end
     end
 
@@ -134,4 +134,3 @@ RSpec.describe "/ratings", type: :request do
     end
   end
 end
-

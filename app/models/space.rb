@@ -65,6 +65,23 @@ class Space < ApplicationRecord
     !average_rating_from_last_week.nil?
   end
 
+  # Returns the most recent rating timestamp for this space
+  # This is used to display when the space was last rated
+  #
+  # @return [DateTime, nil] The most recent rating's created_at timestamp, or nil if no ratings exist
+  def last_rating_timestamp
+    ratings.order(created_at: :desc).first&.created_at
+  end
+
+  # Returns the most recent rating timestamp from the past hour
+  # This is used to display when the space was last rated (recent data only)
+  #
+  # @return [DateTime, nil] The most recent rating's created_at timestamp from past hour, or nil if no recent ratings
+  def last_rating_timestamp_recent
+    one_hour_ago = 1.hour.ago
+    ratings.where("created_at >= ?", one_hour_ago).order(created_at: :desc).first&.created_at
+  end
+
   private
 
   def create_initial_rating

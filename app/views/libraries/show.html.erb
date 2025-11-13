@@ -33,12 +33,16 @@
           <div class="space-name"><%= space.name %></div>
           <% avg_rating = space.average_rating_last_hour %>
           <% using_last_week = space.using_last_week_rating? %>
+          <% last_rating_time = space.last_rating_timestamp_recent || space.last_rating_timestamp %>
           <% if avg_rating %>
             <div class="rating-badge <%= 'last-week-rating' if using_last_week %>">
               <span class="rating-label">
                 <%= using_last_week ? "Avg (last week):" : "Avg (1hr):" %>
               </span>
               <span class="rating-value"><%= avg_rating %>/5</span>
+              <% if last_rating_time %>
+                <span class="rating-timestamp">Updated <%= time_ago_in_words(last_rating_time) %> ago</span>
+              <% end %>
             </div>
           <% else %>
             <div class="rating-badge no-rating">
@@ -55,7 +59,12 @@
       
       <div class="capacity-section">
         <h3 class="capacity-title">Add Capacity</h3>
-        <div class="current-capacity">Current Capacity: <%= space.capacity ? "#{space.capacity}/5" : "Not set" %></div>
+        <div class="current-capacity">
+          Current Capacity: <%= space.capacity ? "#{space.capacity}/5" : "Not set" %>
+          <% if space.capacity && space.updated_at %>
+            <span class="capacity-timestamp">(Updated <%= time_ago_in_words(space.updated_at) %> ago)</span>
+          <% end %>
+        </div>
         <% if form_space.errors[:capacity].any? %>
           <div class="alert capacity-error"><%= form_space.errors[:capacity].to_sentence %></div>
         <% end %>
