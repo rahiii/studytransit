@@ -203,6 +203,7 @@ body::before {
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .rating-badge.no-rating {
@@ -229,10 +230,20 @@ body::before {
   gap: 0.25rem;
   justify-content: center;
   padding: 0.25rem 0;
+  margin-bottom: 0.25rem;
 }
 
 .person-icon {
   font-size: 2rem;
+}
+
+.rating-timestamp {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0;
 }
 
 /* Capacity Section */

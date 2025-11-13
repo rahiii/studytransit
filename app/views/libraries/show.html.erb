@@ -40,9 +40,6 @@
                 <%= using_last_week ? "Avg (last week):" : "Avg (1hr):" %>
               </span>
               <span class="rating-value"><%= avg_rating %>/5</span>
-              <% if last_rating_time %>
-                <span class="rating-timestamp">Updated <%= time_ago_in_words(last_rating_time) %> ago</span>
-              <% end %>
             </div>
           <% else %>
             <div class="rating-badge no-rating">
@@ -55,6 +52,11 @@
             <span class="person-icon">👤</span>
           <% end %>
         </div>
+        <% if last_rating_time %>
+          <div class="rating-timestamp">
+            Updated <%= time_ago_in_words(last_rating_time) %> ago
+          </div>
+        <% end %>
       </div>
       
       <div class="capacity-section">

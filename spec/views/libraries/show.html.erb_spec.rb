@@ -41,11 +41,14 @@ RSpec.describe "libraries/show", type: :view do
     expect(rendered).to have_content("must be between 1 and 5")
   end
 
-  it "renders rating timestamp when rating exists" do
+  it "renders rating timestamp below capacity emojis when rating exists" do
     space.ratings.create!(value: 4)
     render
+    # Timestamp should be present and below the occupancy indicators
     expect(rendered).to have_content("Updated")
     expect(rendered).to have_content("ago")
+    # Verify it's not inside the rating badge
+    expect(rendered).to have_css(".rating-timestamp")
   end
 
   it "renders 'No recent ratings' when no ratings exist" do
