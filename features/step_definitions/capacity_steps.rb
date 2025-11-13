@@ -97,3 +97,8 @@ end
 Then(/^I should see "([^"]*)"$/) do |message|
   expect(page).to have_content(message)
 end
+
+Given(/^"([^"]*)" has no ratings$/) do |space_name|
+  space = Space.find_by!(name: space_name)
+  space.ratings.destroy_all
+end

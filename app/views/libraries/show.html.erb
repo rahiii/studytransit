@@ -48,7 +48,8 @@
           <% end %>
         </div>
         <div class="occupancy-indicators">
-          <% (space.capacity || 0).times do %>
+          <% emoji_count = avg_rating ? avg_rating.round : 0 %>
+          <% emoji_count.times do %>
             <span class="person-icon">👤</span>
           <% end %>
         </div>
@@ -61,12 +62,6 @@
       
       <div class="capacity-section">
         <h3 class="capacity-title">Add Capacity</h3>
-        <div class="current-capacity">
-          Current Capacity: <%= space.capacity ? "#{space.capacity}/5" : "Not set" %>
-          <% if space.capacity && space.updated_at %>
-            <span class="capacity-timestamp">(Updated <%= time_ago_in_words(space.updated_at) %> ago)</span>
-          <% end %>
-        </div>
         <% if form_space.errors[:capacity].any? %>
           <div class="alert capacity-error"><%= form_space.errors[:capacity].to_sentence %></div>
         <% end %>

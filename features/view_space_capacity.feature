@@ -15,10 +15,10 @@ Feature: View Space Capacity
   Scenario: View capacity indicators for all spaces
     Given I am on the library page for "Butler"
     When I view the spaces
-    Then I should see "Room 209" with capacity "3/5"
-    And I should see "Butler Cafe" with capacity "3/5"
-    And I should see "Main Room" with capacity "2/5"
-    And I should see "4th Floor" with capacity "4/5"
+    Then I should see "Room 209"
+    And I should see "Butler Cafe"
+    And I should see "Main Room"
+    And I should see "4th Floor"
 
   Scenario: See person icons representing capacity
     Given I am on the library page for "Butler"
@@ -33,7 +33,7 @@ Feature: View Space Capacity
     And the library has a space "New Space" with no capacity
     When I am on the library page for "Avery Library"
     And I view the spaces
-    Then I should see "New Space" with capacity "Not set"
+    Then I should not see "Current Capacity:" for "New Space"
     And I should see 0 person icons for "New Space"
 
   Scenario: Navigate back to library list from capacity view

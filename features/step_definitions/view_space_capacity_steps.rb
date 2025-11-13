@@ -51,3 +51,10 @@ Then("I should see {int} person icons for {string}") do |expected_count, space_n
   person_icons = space_section.all(".person-icon")
   expect(person_icons.count).to eq(expected_count)
 end
+
+Then("I should not see {string} for {string}") do |text, space_name|
+  space_section = page.find(".space-section", text: space_name)
+  within(space_section) do
+    expect(page).not_to have_content(text)
+  end
+end

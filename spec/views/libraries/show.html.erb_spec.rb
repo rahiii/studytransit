@@ -18,15 +18,9 @@ RSpec.describe "libraries/show", type: :view do
     expect(rendered).to have_content("Main Room")
   end
 
-  it "renders capacity when set" do
+  it "does not render current capacity section" do
     render
-    expect(rendered).to have_content("Current Capacity: 3/5")
-  end
-
-  it "renders 'Not set' when capacity is nil" do
-    space.update!(capacity: nil)
-    render
-    expect(rendered).to have_content("Current Capacity: Not set")
+    expect(rendered).not_to have_content("Current Capacity:")
   end
 
   it "uses @space when set for error display" do

@@ -17,13 +17,12 @@ Feature: Update Space Capacity
     When I fill in "1" for the first space capacity
     And I press "Update Capacity" for the first space
     Then I should be on the Butler library page
-    And the first space should show capacity "1/5"
 
   Scenario: Successfully update capacity from 1 to 3
     Given I am on the Butler library page
     When I fill in "3" for "Main Room" capacity
     And I press "Update Capacity" for "Main Room"
-    Then "Main Room" should show capacity "3/5"
+    Then I should be on the Butler library page
 
   Scenario: Fail to update with capacity below minimum
     Given I am on the Butler library page
@@ -41,6 +40,7 @@ Feature: Update Space Capacity
     Given I am on the Butler library page
     Then "Main Room" should display 2 capacity icons
     And "Room 209" should display 1 capacity icons
+    And "Room 209" has no ratings
     When I update "Room 209" capacity to "3"
     Then "Room 209" should display 3 capacity icons
 
@@ -49,5 +49,5 @@ Feature: Update Space Capacity
       | name       | library |
       | Quiet Room | Butler  |
     And I am on the Butler library page
-    Then "Quiet Room" should show "Not set" for capacity
+    Then I should not see "Current Capacity:" for "Quiet Room"
 
